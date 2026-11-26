@@ -1,6 +1,9 @@
 import os
 
 OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+OUTPUT_FILE = "entry.txt"
+MIN_CHARACTERS = 1
+MAX_CHARACTERS = 200
 
 # One-line pigeon elevator pitch for make.fun's "Pigeon Pitch, One
 # Line" bounty. The gate: UTF-8 text of 1-200 characters.
@@ -13,9 +16,9 @@ OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 # Both shifts, one flock, one founder.
 LINE = "Investors: we dirty 900 city windows a day, then sell the cleaning plan. Same pigeons, both shifts. I am the pigeons."
 
-if not 1 <= len(LINE) <= 200 or not LINE.strip():
+if not MIN_CHARACTERS <= len(LINE) <= MAX_CHARACTERS or not LINE.strip():
     raise ValueError("entry line must be 1-200 characters")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-with open(os.path.join(OUTPUT_DIR, "entry.txt"), "w", encoding="utf-8") as f:
+with open(os.path.join(OUTPUT_DIR, OUTPUT_FILE), "w", encoding="utf-8") as f:
     f.write(LINE)
